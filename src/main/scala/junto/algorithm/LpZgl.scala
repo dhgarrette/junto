@@ -13,7 +13,7 @@ import gnu.trove.list.array.TDoubleArrayList
 import gnu.trove.map.hash.TObjectDoubleHashMap
 import gnu.trove.iterator.TObjectDoubleIterator
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 /**
  * Implementation of the original label propagation algorithm:
@@ -35,7 +35,7 @@ extends LabelPropagationAlgorithm(g) {
     // -- normalize edge weights
     // -- remove dummy label from injected or estimate labels.
     // -- if seed node, then initialize estimated labels with injected
-    for (vName <- g.vertices.keySet.iterator) {
+    for (vName <- g.vertices.asScala.keySet.iterator) {
       val v: Vertex = g.vertices.get(vName)
 			
       // remove dummy label: after normalization, some of the distributions
@@ -72,7 +72,7 @@ extends LabelPropagationAlgorithm(g) {
 
       val newDist = new HashMap[String, TObjectDoubleHashMap[String]]()
 
-      for (vName <- g.vertices.keySet.iterator) {
+      for (vName <- g.vertices.asScala.keySet.iterator) {
         val v: Vertex = g.vertices.get(vName)
 				
         // if the current node is a seed node, then there is no need
@@ -108,7 +108,7 @@ extends LabelPropagationAlgorithm(g) {
       var deltaLabelDiff = 0.0
 			
       // update all vertices with new estimated label scores
-      for (vName <- g.vertices.keySet.iterator) {
+      for (vName <- g.vertices.asScala.keySet.iterator) {
         val v: Vertex = g.vertices.get(vName)
 
         // normalize and retain only top scoring labels

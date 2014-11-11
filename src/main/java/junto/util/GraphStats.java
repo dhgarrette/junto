@@ -12,8 +12,8 @@ import junto.config.GraphConfigLoader;
 import junto.graph.Graph;
 import junto.graph.Vertex;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.KShortestPaths;
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
@@ -21,7 +21,7 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 
 
 public class GraphStats {
-	private static Logger logger = LogManager.getLogger(GraphStats.class);
+	private static Logger logger = LoggerFactory.getLogger(GraphStats.class);
     
   // Number of K-shortest paths generated. 
   private static int _kPrime = -1;

@@ -4,12 +4,12 @@ import gnu.trove.map.hash.TObjectDoubleHashMap
 import gnu.trove.iterator.TObjectDoubleIterator
 import java.util.{ArrayList,HashMap,Iterator}
 import junto.util._
-import scala.collection.JavaConversions._
-import com.typesafe.scalalogging.log4j.Logging
+import scala.collection.JavaConverters._
 import java.io.OutputStreamWriter
 import java.io.FileOutputStream
+import com.typesafe.scalalogging.StrictLogging
 
-class Graph extends Logging {
+class Graph extends StrictLogging {
 
   val vertices = new HashMap[String, Vertex]
   val labels = new TObjectDoubleHashMap[String]
@@ -66,7 +66,7 @@ class Graph extends Logging {
   // keep only K highest scoring neighbors
   def KeepTopKNeighbors (kValue: Int) {
     var totalEdges = 0
-    for (vName <- vertices.keySet) {
+    for (vName <- vertices.asScala.keySet) {
       val v = vertices.get(vName)
 			
       val neighWeights: TObjectDoubleHashMap[String] = new TObjectDoubleHashMap[String]
@@ -80,14 +80,14 @@ class Graph extends Logging {
       // Since the array is reverse sorted, the highest scoring
       // neighbors are listed first, which we want to retain. Hence,
       // remove everything after after the top-K neighbors.
-      for (neighLabelScore <- sortedNeighList.drop(kValue))
+      for (neighLabelScore <- sortedNeighList.asScala.drop(kValue))
         v.neighbors.remove(neighLabelScore.GetLabel)
 
       totalEdges += v.neighbors.keySet.size
     }
 		
     // now make all the directed edges undirected.
-    for (vName <- vertices.keySet) {
+    for (vName <- vertices.asScala.keySet) {
       val v = vertices.get(vName)
 
       for (neighName <-  v.GetNeighborNames) {
@@ -109,7 +109,7 @@ class Graph extends Logging {
     // get the average edge weight of the graph
     val avgEdgeWeight = GetAverageEdgeWeightSqrt
 		
-    for (vName <- vertices.keySet) {
+    for (vName <- vertices.asScala.keySet) {
       val v = vertices.get(vName)
 
       val nIter: TObjectDoubleIterator[String] = v.neighbors.iterator
@@ -130,7 +130,7 @@ class Graph extends Logging {
     var totalEdges = 0
     var totalDistance = 0.0
 
-    for (vName <- vertices.keySet) {
+    for (vName <- vertices.asScala.keySet) {
       val v = vertices.get(vName)
       val nIter: TObjectDoubleIterator[String] = v.neighbors.iterator
       while (nIter.hasNext) {
@@ -164,7 +164,7 @@ class Graph extends Logging {
   def CalculateRandomWalkProbabilities (beta: Double) {
     var totalZeroEntropyNeighborhoodNodes = 0
 
-    for (vName <- vertices.keySet) {
+    for (vName <- vertices.asScala.keySet) {
       val isZeroEntropy = GetVertex(vName).CalculateRWProbabilities(beta)
       if (isZeroEntropy)
         totalZeroEntropyNeighborhoodNodes += 1
@@ -175,7 +175,7 @@ class Graph extends Logging {
 	
 }
 
-object GraphIo extends Logging {
+object GraphIo extends StrictLogging {
   import java.io.{BufferedWriter,FileWriter}
   
   val kDelim_ = "\t" 
@@ -187,7 +187,7 @@ object GraphIo extends Logging {
 
     val bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"))
 
-    for (vName <- graph.vertices.keySet) {
+    for (vName <- graph.vertices.asScala.keySet) {
       val v = graph.vertices.get(vName)
       if (v.isTestNode) {
         val mrr = v.GetMRR

@@ -22,7 +22,6 @@ import java.io._
 import junto.JuntoContext._
 import junto.app._
 import junto.config._
-import collection.JavaConversions._
 
 
 /**

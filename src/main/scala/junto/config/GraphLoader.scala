@@ -21,9 +21,9 @@ import gnu.trove.map.hash.TObjectDoubleHashMap
 import junto.algorithm._
 import junto.graph._
 import junto.util._
-import com.typesafe.scalalogging.log4j.Logging
+import com.typesafe.scalalogging.StrictLogging
 
-object GraphConfigLoader extends Logging {
+object GraphConfigLoader extends StrictLogging {
 
   def apply (config: Hashtable[String, String]): Graph = {
 		
@@ -79,10 +79,9 @@ object GraphConfigLoader extends Logging {
 }
 
 
-object GraphBuilder extends Logging {
+object GraphBuilder extends StrictLogging {
 
   import io.Source
-  import scala.collection.JavaConversions._
   import gnu.trove.map.hash.TObjectIntHashMap
 
   // Create a graph using lots of defaults; no test labels provided

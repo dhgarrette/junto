@@ -23,7 +23,6 @@ object JuntoContext {
 
   import junto.graph.Vertex
   import junto.config.Label
-  import scala.collection.JavaConversions._
 
 
   /**

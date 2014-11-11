@@ -12,7 +12,7 @@ import junto.util.Constants
 import junto.util.CollectionUtil
 import junto.util.ProbUtil
 
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 object Vertex {
 
@@ -31,7 +31,7 @@ object Vertex {
   def getPrettyPrintMap (m: TObjectDoubleHashMap[String], la: RyanAlphabet): String = {		
     val sortedMap: ArrayList[ObjectDoublePair] = CollectionUtil.ReverseSortMap(m)
     var op = ""
-    sortedMap.foreach { 
+    sortedMap.asScala.foreach { 
       labelScorePair => 
         var label = labelScorePair.GetLabel.asInstanceOf[String]
 
@@ -215,7 +215,7 @@ class Vertex (val name: String) {
 	
   def GetMRR: Double = {
     val sortedMap: List[ObjectDoublePair] = 
-      CollectionUtil.ReverseSortMap(estimatedLabels).toList.filter(_.GetLabel != Constants.GetDummyLabel)
+      CollectionUtil.ReverseSortMap(estimatedLabels).asScala.toList.filter(_.GetLabel != Constants.GetDummyLabel)
     val goldRank = sortedMap.indexWhere(pair => goldLabels.containsKey(pair.GetLabel))
     if (goldRank > -1) 1.0/(goldRank + 1.0)
     else 0.0

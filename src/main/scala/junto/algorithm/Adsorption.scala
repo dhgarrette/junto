@@ -11,8 +11,8 @@ import java.util.HashMap
 import java.util.Iterator
 import gnu.trove.map.hash.TObjectDoubleHashMap
 import gnu.trove.iterator.TObjectDoubleIterator
-import scala.collection.JavaConversions._
-import com.typesafe.scalalogging.log4j.Logging
+import scala.collection.JavaConverters._
+import com.typesafe.scalalogging.StrictLogging
 
 /**
  * Class for MAD algorithm, providing MAD specific implementation details
@@ -43,7 +43,7 @@ object MadHelper {
   ): TObjectDoubleHashMap[String] = {
 
     val norms = new TObjectDoubleHashMap[String]
-    g.vertices.keySet.foreach { 
+    g.vertices.asScala.keySet.foreach { 
       vName => {
         val vertex = g.vertices.get(vName)
         
@@ -95,7 +95,7 @@ object AdsorptionHelper {
   // -- remove dummy label from injected or estimate labels.
   // -- if seed node, then initialize estimated labels with injected
   def prepareGraph (graph: Graph) {
-    for (vName <- graph.vertices.keySet) {
+    for (vName <- graph.vertices.asScala.keySet) {
       val v: Vertex = graph.vertices.get(vName)
       
       // remove dummy label: after normalization, some of the distributions
@@ -126,7 +126,7 @@ object AdsorptionHelper {
  */
 abstract class Adsorption (g: Graph, keepTopKLabels: Int, mu1: Double, mu2: Double, mu3: Double)
 extends LabelPropagationAlgorithm(g) 
-with Logging {
+with StrictLogging {
 
   // Normalization is needed only for the original Adsorption
   // algorithm.  After normalization, we have the weighted
@@ -158,7 +158,7 @@ with Logging {
 
       val newDist =  new HashMap[String, TObjectDoubleHashMap[String]]
 
-      for (vName <- g.vertices.keySet) {
+      for (vName <- g.vertices.asScala.keySet) {
 			
         val v: Vertex = g.vertices.get(vName)
 
@@ -231,7 +231,7 @@ with Logging {
       var totalEntityUpdates = 0
 		
       // update all vertices with new estimated label scores
-      for (vName <- g.vertices.keySet) {
+      for (vName <- g.vertices.asScala.keySet) {
         val v: Vertex = g.vertices.get(vName)
         val vertexNewDist = newDist.get(vName)
 				

@@ -1,7 +1,7 @@
 package junto.graph
 
 import akka.actor._
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 import gnu.trove.map.hash.TObjectDoubleHashMap
 
@@ -61,6 +61,7 @@ object MadGraphRunner {
     val namesToActorVertices: Map[String, ActorRef] = 
       graph
         .vertices
+        .asScala
         .values
         .toIndexedSeq
         .zipWithIndex
@@ -81,7 +82,7 @@ object MadGraphRunner {
     namesToActorVertices.foreach {
       case(vName, vertexActorRef) => {
         val neighborsAsStrings = graph.vertices.get(vName).neighbors
-        val neighborsAsActorRefs = neighborsAsStrings.keySet.map {
+        val neighborsAsActorRefs = neighborsAsStrings.keySet.asScala.map {
           neighName => (namesToActorVertices(neighName) -> neighborsAsStrings.get(neighName))
         } toMap
 
@@ -90,7 +91,7 @@ object MadGraphRunner {
     }
     
     val vertices = namesToActorVertices.values.toIndexedSeq
-    val numTestNodes = graph.vertices.values.count(_.isTestNode).toDouble
+    val numTestNodes = graph.vertices.asScala.values.count(_.isTestNode).toDouble
 
     var numBusyVertices: Int = _
     var totalDeltaLabelDiff = 0.0
@@ -216,7 +217,7 @@ object MadGraphRunner {
           val sortedMap: List[(String,Double)] = 
             estimatedLabels.toList.sortBy(_._2).reverse.filter(_._1 != Constants.GetDummyLabel)
 
-          val goldRank = sortedMap.indexWhere(pair => goldLabels.containsKey(pair._1))
+          val goldRank = sortedMap.indexWhere(pair => goldLabels.contains(pair._1))
 
           if (goldRank > -1) 1.0/(goldRank + 1.0) else 0.0
         } else {
@@ -257,7 +258,7 @@ object MadGraphRunner {
  */
 object TroveToScalaMap {
   def apply[T] (tmap: TObjectDoubleHashMap[T]): Map[T,Double] =
-    tmap.keySet.map(key => (key -> tmap.get(key))).toMap
+    tmap.keySet.asScala.map(key => (key -> tmap.get(key))).toMap
 }
 
 /**

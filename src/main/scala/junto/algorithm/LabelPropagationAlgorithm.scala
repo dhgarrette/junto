@@ -2,7 +2,7 @@ package junto.algorithm
 
 import java.util.ArrayList
 import junto.graph.{Graph, Vertex}
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 abstract class LabelPropagationAlgorithm (graph: Graph) {
 
@@ -12,7 +12,7 @@ abstract class LabelPropagationAlgorithm (graph: Graph) {
   def getObjective (vertex: Vertex): Double
 
   def getGraphObjective: Double =
-    graph.vertices.keySet.iterator.foldLeft(0.0)(
+    graph.vertices.asScala.keySet.iterator.foldLeft(0.0)(
       (obj, vName) => obj + getObjective(graph.vertices.get(vName))
     )
 

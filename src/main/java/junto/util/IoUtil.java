@@ -5,11 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 public class IoUtil {
-    private static Logger logger = LogManager.getLogger(IoUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(IoUtil.class);
 
   public static ArrayList<String> LoadFile(String fileName) {
     ArrayList<String> retList = new ArrayList<String>();

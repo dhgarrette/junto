@@ -1,28 +1,30 @@
 import AssemblyKeys._
 
+import com.typesafe.sbt.SbtStartScript
+
 name := "junto"
 
 version := "1.6.1-SNAPSHOT"
 
 organization := "org.scalanlp"
 
-scalaVersion := "2.10.1"
+scalaVersion := "2.11.2"
 
 crossPaths := false
 
-retrieveManaged := true
-
 libraryDependencies ++= Seq(
-  "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
-  "org.apache.logging.log4j" % "log4j-core" % "2.0-beta3",
-  "com.typesafe.akka" % "akka-actor_2.10" % "2.1.0",
-  "org.rogach" %% "scallop" % "0.8.1",
+  "org.jgrapht" % "jgrapht-jdk1.5" % "0.7.3",
+  "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test",
+  "com.typesafe.akka" % "akka-actor_2.11" % "2.3.6",
+  "org.rogach" %% "scallop" % "0.9.5",
   "net.sf.trove4j" % "trove4j" % "3.0.3",
-  "com.typesafe" % "scalalogging-log4j_2.10" % "1.0.1")
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0")
 
 seq(assemblySettings: _*)
 
 jarName in assembly := "junto-assembly.jar"
+
+seq(SbtStartScript.startScriptForClassesSettings: _*)
 
 publishTo <<= version { v: String =>
   val nexus = "https://oss.sonatype.org/"
