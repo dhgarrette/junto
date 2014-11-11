@@ -152,7 +152,7 @@ with StrictLogging {
     
     val globalStartTime = System.currentTimeMillis
     for (iter <- 1 to maxIter) {
-      logger.debug(s"Iteration: $iter")
+      logger.info(s"Iteration: $iter")
 			
       val startTime = System.currentTimeMillis
 
