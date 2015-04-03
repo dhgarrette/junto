@@ -19,14 +19,14 @@ package junto.app
 import scala.io.Source
 import java.io._
 import java.util.logging.Logging
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
 
 
 /** 
  * Read Junto output to get distributions for just words, and only
  * for labels that have higher probability than __DUMMY__.
  */
-object OutputExtractor extends StrictLogging {
+object OutputExtractor extends Logging {
 
   val NodeRE = """([^_]+)_(.+)""".r
 

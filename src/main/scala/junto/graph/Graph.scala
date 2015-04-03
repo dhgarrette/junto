@@ -7,9 +7,9 @@ import junto.util._
 import scala.collection.JavaConverters._
 import java.io.OutputStreamWriter
 import java.io.FileOutputStream
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
 
-class Graph extends StrictLogging {
+class Graph extends Logging {
 
   val vertices = new HashMap[String, Vertex]
   val labels = new TObjectDoubleHashMap[String]
@@ -175,7 +175,7 @@ class Graph extends StrictLogging {
 	
 }
 
-object GraphIo extends StrictLogging {
+object GraphIo extends Logging {
   import java.io.{BufferedWriter,FileWriter}
   
   val kDelim_ = "\t" 

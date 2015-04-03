@@ -12,7 +12,7 @@ import java.util.Iterator
 import gnu.trove.map.hash.TObjectDoubleHashMap
 import gnu.trove.iterator.TObjectDoubleIterator
 import scala.collection.JavaConverters._
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
 
 /**
  * Class for MAD algorithm, providing MAD specific implementation details
@@ -126,7 +126,7 @@ object AdsorptionHelper {
  */
 abstract class Adsorption (g: Graph, keepTopKLabels: Int, mu1: Double, mu2: Double, mu3: Double)
 extends LabelPropagationAlgorithm(g) 
-with StrictLogging {
+with Logging {
 
   // Normalization is needed only for the original Adsorption
   // algorithm.  After normalization, we have the weighted

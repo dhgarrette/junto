@@ -21,9 +21,9 @@ import gnu.trove.map.hash.TObjectDoubleHashMap
 import junto.algorithm._
 import junto.graph._
 import junto.util._
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
 
-object GraphConfigLoader extends StrictLogging {
+object GraphConfigLoader extends Logging {
 
   def apply (config: Hashtable[String, String]): Graph = {
 		
@@ -79,7 +79,7 @@ object GraphConfigLoader extends StrictLogging {
 }
 
 
-object GraphBuilder extends StrictLogging {
+object GraphBuilder extends Logging {
 
   import io.Source
   import gnu.trove.map.hash.TObjectIntHashMap

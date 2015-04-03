@@ -8,9 +8,9 @@ version := "1.6.1-SNAPSHOT"
 
 organization := "org.scalanlp"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.6"
 
-crossPaths := false
+//crossPaths := false
 
 libraryDependencies ++= Seq(
   "org.jgrapht" % "jgrapht-jdk1.5" % "0.7.3",
@@ -18,7 +18,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" % "akka-actor_2.11" % "2.3.6",
   "org.rogach" %% "scallop" % "0.9.5",
   "net.sf.trove4j" % "trove4j" % "3.0.3",
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0")
+  "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2",
+  "org.slf4j" % "slf4j-log4j12" % "1.7.9")
 
 seq(assemblySettings: _*)
 

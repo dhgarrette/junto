@@ -21,12 +21,12 @@ import junto.algorithm._
 import junto.config._
 import junto.graph._
 import junto.util._
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
 
 /**
  * Run Junto as an API call. To construct a graph, use junto.config.GraphBuilder.
  */
-object JuntoRunner extends StrictLogging {
+object JuntoRunner extends Logging {
 
   def apply (graph: Graph, mu1: Double = 1.0, mu2: Double = .01, mu3: Double = .01, 
              maxIters: Int = 10, verbose: Boolean = true) { 
@@ -85,7 +85,7 @@ object JuntoRunner extends StrictLogging {
 /**
  * Run Junto using a config file.
  */
-object JuntoConfigRunner extends StrictLogging {
+object JuntoConfigRunner extends Logging {
 
   def apply (config: Hashtable[String,String], 
              resultList: ArrayList[Map[String, Double]]) = {
