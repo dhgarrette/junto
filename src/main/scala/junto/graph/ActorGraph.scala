@@ -125,7 +125,7 @@ object MadGraphRunner {
       // Tell all the vertices to stop and then stop itself.
       case Stop => 
         vertices.foreach(vertex => vertex ! PoisonPill)
-        context.system.shutdown
+        context.system.terminate  // shutdown
 
     }
 

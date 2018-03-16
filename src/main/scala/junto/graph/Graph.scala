@@ -7,7 +7,7 @@ import junto.util._
 import scala.collection.JavaConverters._
 import java.io.OutputStreamWriter
 import java.io.FileOutputStream
-import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
+import com.typesafe.scalalogging.{ StrictLogging => Logging }
 
 class Graph extends Logging {
 

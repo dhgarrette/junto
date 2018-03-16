@@ -1,39 +1,39 @@
-import AssemblyKeys._
+// import AssemblyKeys._
 
-import com.typesafe.sbt.SbtStartScript
+// import com.typesafe.sbt.SbtStartScript
 
 name := "junto"
 
-version := "1.6.1-SNAPSHOT"
+version := "1.6.2-SNAPSHOT"
 
 organization := "org.scalanlp"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.12.4"
 
 //crossPaths := false
 
 libraryDependencies ++= Seq(
   "org.jgrapht" % "jgrapht-jdk1.5" % "0.7.3",
-  "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test",
-  "com.typesafe.akka" % "akka-actor_2.11" % "2.3.6",
-  "org.rogach" %% "scallop" % "0.9.5",
+  "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+  "com.typesafe.akka" %% "akka-actor" % "2.5.11",
+  "org.rogach" %% "scallop" % "3.1.2",
   "net.sf.trove4j" % "trove4j" % "3.0.3",
-  "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2",
-  "org.slf4j" % "slf4j-log4j12" % "1.7.9")
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.8.0",
+  "ch.qos.logback" % "logback-classic" % "1.2.3")
 
-seq(assemblySettings: _*)
+// seq(assemblySettings: _*)
 
-jarName in assembly := "junto-assembly.jar"
+// jarName in assembly := "junto-assembly.jar"
 
-seq(SbtStartScript.startScriptForClassesSettings: _*)
+// seq(SbtStartScript.startScriptForClassesSettings: _*)
 
-publishTo <<= version { v: String =>
-  val nexus = "https://oss.sonatype.org/"
-  if (v.trim.endsWith("SNAPSHOT"))
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
+// publishTo <<= version { v: String =>
+//   val nexus = "https://oss.sonatype.org/"
+//   if (v.trim.endsWith("SNAPSHOT"))
+//     Some("snapshots" at nexus + "content/repositories/snapshots")
+//   else
+//     Some("releases" at nexus + "service/local/staging/deploy/maven2")
+// }
 
 publishMavenStyle := true
 

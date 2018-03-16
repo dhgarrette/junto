@@ -12,7 +12,7 @@ import java.util.Iterator
 import gnu.trove.map.hash.TObjectDoubleHashMap
 import gnu.trove.iterator.TObjectDoubleIterator
 import scala.collection.JavaConverters._
-import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
+import com.typesafe.scalalogging.{ StrictLogging => Logging }
 
 /**
  * Class for MAD algorithm, providing MAD specific implementation details

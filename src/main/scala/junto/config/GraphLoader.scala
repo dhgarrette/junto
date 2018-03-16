@@ -21,7 +21,7 @@ import gnu.trove.map.hash.TObjectDoubleHashMap
 import junto.algorithm._
 import junto.graph._
 import junto.util._
-import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
+import com.typesafe.scalalogging.{ StrictLogging => Logging }
 
 object GraphConfigLoader extends Logging {
 

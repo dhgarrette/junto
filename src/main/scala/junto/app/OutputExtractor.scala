@@ -19,7 +19,7 @@ package junto.app
 import scala.io.Source
 import java.io._
 import java.util.logging.Logging
-import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
+import com.typesafe.scalalogging.{ StrictLogging => Logging }
 
 
 /** 

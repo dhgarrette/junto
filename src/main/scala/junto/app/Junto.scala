@@ -21,7 +21,7 @@ import junto.algorithm._
 import junto.config._
 import junto.graph._
 import junto.util._
-import com.typesafe.scalalogging.slf4j.{ StrictLogging => Logging }
+import com.typesafe.scalalogging.{ StrictLogging => Logging }
 
 /**
  * Run Junto as an API call. To construct a graph, use junto.config.GraphBuilder.
